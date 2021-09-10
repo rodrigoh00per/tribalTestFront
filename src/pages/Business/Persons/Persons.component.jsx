@@ -52,7 +52,7 @@ const Persons = ({
   }, [businessId, getPersonsStart]);
 
   const restartModalInfo = () => setModalInfo({ type: null, values: {} });
-
+  
   const onClickAction = useCallback((type, personId, title) => {
     if (type === "selection") return;
     else setModalInfo({ type, values: { personId, name: title } });
