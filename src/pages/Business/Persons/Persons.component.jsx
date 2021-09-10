@@ -45,10 +45,7 @@ const Persons = ({
   });
   const [showCards, setShowCards] = useState(false);
 
-  const businessId = useMemo(
-    () => (params?.id && parseInt(params?.id) ? params?.id : null),
-    [params]
-  );
+  const businessId = useMemo(() => (params?.id ? params?.id : null), [params]);
 
   useEffect(() => {
     getPersonsStart(businessId);

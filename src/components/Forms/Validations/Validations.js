@@ -12,7 +12,7 @@ const validateEmail = (email) => {
 };
 
 const checkFormatEmail = (email) =>
-  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email) ? true : false;
+  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]/i.test(email) ? true : false;
 
 
 const genericValidate = (value) => (!value ?   i18n.t("forms.generic.errors.required") : null);
