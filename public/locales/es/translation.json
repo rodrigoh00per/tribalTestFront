@@ -1,0 +1,53 @@
+{
+  "singular_business": "Negocio",
+  "plural_business": "Negocios",
+  "persons": "Personas",
+  "person": "Persona",
+  "create": "Crear",
+  "cancel": "Cancelar",
+  "update": "Actualizar",
+  "loading": "Cargando",
+  "remove": "Eliminar",
+  "message_delete": "¿Estas seguro de querer eliminar {{name}} ?",
+  "faq": "Preguntas",
+  "support": "Soporte",
+  "language": "Ingles",
+  "menu": {
+    "items": {
+      "overview": "Vista",
+      "pay": "Pago Tribal",
+      "credit": "Credito Tribal",
+      "payments": "Pagos Tribal",
+      "notifications": "Notificaciones Tribal",
+      "users": "Usuarios Tribal"
+    }
+  },
+  "forms": {
+    "email": {
+      "label": "Email",
+      "errors": {
+        "required": "El correo es requerido",
+        "incorrect": "Tu correo electrónico es incorrecto"
+      }
+    },
+    "name": {
+      "label": "Nombre",
+      "errors": {}
+    },
+    "role": {
+      "label": "Rol",
+      "errors": {}
+    },
+    "phone": {
+      "label": "Telefono",
+      "errors": {}
+    },
+    "join_date": {
+      "label": "Fecha de Inicio",
+      "errors": {}
+    },
+    "generic": {
+      "errors": { "required": "El valor es requerido" }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "singular_business": "Business",
+  "plural_business": "Business",
+  "persons": "Persons",
+  "person": "Person",
+  "create": "Create",
+  "cancel": "Cancel",
+  "update": "Update",
+  "loading": "Loading",
+  "remove": "Remove",
+  "message_delete": "Are you sure to delete {{name}}?",
+  "faq": "FAQ",
+  "support": "Support",
+  "language": "Spanish",
+  "menu": {
+    "items": {
+      "overview": "Overview",
+      "pay": "Tribal Pay",
+      "credit": "Tribal Credit",
+      "payments": "Tribal Payments",
+      "notifications": "Tribal Notifications",
+      "users": "Tribal Users"
+    }
+  },
+  "forms": {
+    "email": {
+      "label": "Email",
+      "errors": {
+        "required": "The email is required",
+        "incorrect": "Your email is incorrect"
+      }
+    },
+    "name": {
+      "label": "Name",
+      "errors": {}
+    },
+    "role": {
+      "label": "Role",
+      "errors": {}
+    },
+    "phone": {
+      "label": "Phone",
+      "errors": {}
+    },
+    "join_date": {
+      "label": "Join Date",
+      "errors": {}
+    },
+    "generic": {
+      "errors": { "required": "The value is required" }
+    }
+  }
+}
