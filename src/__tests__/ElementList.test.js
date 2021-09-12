@@ -4,7 +4,6 @@ import { SubTitleList } from "../components/Elementlist/ElementList.styles";
 import { shallow, mount } from "enzyme";
 import Theme from "../styles/Themes/Theme.styles";
 
-
 jest.mock('react-i18next', () => ({
     useTranslation: () => ({ t: key => key })
 }));
@@ -29,7 +28,7 @@ describe("----TEST OF THE ELEMENT LIST---", () => {
         const wrapper = mount(<ElementList />, {
             wrappingComponent: Theme
         })
-        
+
         expect(wrapper.find(SubTitleList)).toHaveLength(0);
     });
 
