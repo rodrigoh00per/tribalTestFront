@@ -1,8 +1,8 @@
 import React from "react";
-import ElementList from "../components/Elementlist/ElementList.component";
-import { SubTitleList } from "../components/Elementlist/ElementList.styles";
+import ElementList from "../../components/Elementlist/ElementList.component";
+import { SubTitleList } from "../../components/Elementlist/ElementList.styles";
 import { shallow, mount } from "enzyme";
-import Theme from "../styles/Themes/Theme.styles";
+import Theme from "../../styles/Themes/Theme.styles";
 
 jest.mock('react-i18next', () => ({
     useTranslation: () => ({ t: key => key })

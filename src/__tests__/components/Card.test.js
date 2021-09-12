@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../components/Card/Card.component";
+import Card from "../../components/Card/Card.component";
 import { shallow, mount } from "enzyme";
 
 describe("----TEST OF THE CARD---", () => {

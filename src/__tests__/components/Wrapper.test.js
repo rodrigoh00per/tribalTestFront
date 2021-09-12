@@ -1,7 +1,7 @@
 import React from "react";
-import Wrapper from "../components/Wrapper/Wrapper.component";
+import Wrapper from "../../components/Wrapper/Wrapper.component";
 import { shallow, mount } from "enzyme";
-import Theme from "../styles/Themes/Theme.styles";
+import Theme from "../../styles/Themes/Theme.styles";
 
 
 jest.mock('react-i18next', () => ({
