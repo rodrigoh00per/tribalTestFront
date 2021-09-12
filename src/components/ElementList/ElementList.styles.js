@@ -61,6 +61,7 @@ export const SubTitleList = styled.label(
       }
 `);
 
+
 export const ContainerActions = styled.div`
     grid-row: 1 / 3;
     grid-column: 3 / 4;

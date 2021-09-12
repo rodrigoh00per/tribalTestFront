@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`----TEST OF THE WRAPPER--- take a snapshot of the wrapper component 1`] = `ShallowWrapper {}`;
