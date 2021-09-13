@@ -108,7 +108,6 @@ const functionsOfReducers = {
             ...state.persons,
             [payload.businessId]: {
                 ...state.persons[payload.businessId],
-               /*  data: { ...state.persons[payload.businessId].data, [payload.personId]: { personId: payload.personId, ...payload.data } }, */
                 error: null, isFetching: false,
             }
         }
@@ -145,7 +144,7 @@ const functionsOfReducers = {
 }
 
 
-const INITAL_STATE = {
+export const INITIAL_STATE = {
     list: {
         data: {}, error: null, isFetching: false,
     },
@@ -154,7 +153,7 @@ const INITAL_STATE = {
 };
 
 
-export default (state = INITAL_STATE, action) =>
+export default (state = INITIAL_STATE, action) =>
     !functionsOfReducers?.[action.type] ? state : functionsOfReducers[action.type](state, action.payload);
 
 
