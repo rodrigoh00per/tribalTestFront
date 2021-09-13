@@ -1,19 +1,11 @@
 import { BusinessTypes } from "./Business.types";
 import { all, takeLatest, call, put } from "redux-saga/effects";
 import { createBusinessComplete, createBusinessError, createPersonComplete, createPersonError, deleteBusinessComplete, deleteBusinessError, deletePersonComplete, deletePersonError, getBusinessComplete, getBusinessError, getBusinessStart, getPersonsComplete, getPersonsError, getPersonsStart, updateBusinessComplete, updateBusinessError, updatePersonComplete, updatePersonError } from "./Business.actions";
+import { callApi } from "../../utils/api/api";
 
-
-import axios from "axios";
-
-function* onListenGetBusinessStart() {
+ export function* onListenGetBusinessStart() {
     try {
-
-        const response = yield axios.get(`${process.env.REACT_APP_TRIBAL_TEST_SERVICE}/business`, {
-            headers: {
-                "x-api-key": process.env.REACT_APP_TRIBAL_TEST_API_KEY,
-                "Content-Type": "application/json",
-            }
-        });
+        const response = yield call(callApi, "business", "get", undefined, undefined);
 
         // its more easy manage certain modification if you use an object than array
         const data = yield all(
@@ -29,12 +21,8 @@ function* onListenGetBusinessStart() {
 function* onCreateBusinessStart({ payload: { name } }) {
     try {
 
-        yield axios.post(`${process.env.REACT_APP_TRIBAL_TEST_SERVICE}/business`, { name }, {
-            headers: {
-                "x-api-key": process.env.REACT_APP_TRIBAL_TEST_API_KEY,
-                "Content-Type": "application/json",
-            }
-        });
+        yield call(callApi, "business", "post", undefined, { name });
+
         yield put(createBusinessComplete());
     }
     catch (error) {
@@ -49,12 +37,8 @@ function* onListenCreateBusinessComplete() {
 function* onUpdateBusinessStart({ payload: { businessId, data: dataToSend } }) {
 
     try {
-        const response = yield axios.put(`${process.env.REACT_APP_TRIBAL_TEST_SERVICE}/business/${businessId}`, dataToSend, {
-            headers: {
-                "x-api-key": process.env.REACT_APP_TRIBAL_TEST_API_KEY,
-                "Content-Type": "application/json",
-            }
-        });
+        const response = yield call(callApi, "business", "put", { businessId }, dataToSend);
+
         const { name } = response.data;
 
         yield put(updateBusinessComplete(businessId, { businessId, name }));
@@ -68,12 +52,7 @@ function* onUpdateBusinessStart({ payload: { businessId, data: dataToSend } }) {
 function* onDeleteBusinessStart({ payload: { businessId } }) {
 
     try {
-        yield axios.delete(`${process.env.REACT_APP_TRIBAL_TEST_SERVICE}/business/${businessId}`, {
-            headers: {
-                "x-api-key": process.env.REACT_APP_TRIBAL_TEST_API_KEY,
-                "Content-Type": "application/json",
-            }
-        });
+        yield call(callApi, "business", "delete", { businessId }, undefined);
 
         yield put(deleteBusinessComplete(businessId));
     }
@@ -86,13 +65,7 @@ function* onDeleteBusinessStart({ payload: { businessId } }) {
 function* onListenGetPersonsStart({ payload: { businessId } }) {
 
     try {
-
-        const response = yield axios.get(`${process.env.REACT_APP_TRIBAL_TEST_SERVICE}/business/${businessId}/persons`, {
-            headers: {
-                "x-api-key": process.env.REACT_APP_TRIBAL_TEST_API_KEY,
-                "Content-Type": "application/json",
-            }
-        });
+        const response = yield call(callApi, "persons", "get", { businessId }, undefined);
 
         const data = yield all(
             response.data.persons.reduce((obj, { personId, ...restInfo }) => ({ ...obj, [personId]: { personId, ...restInfo } }), {}));
@@ -109,13 +82,7 @@ function* onListenGetPersonsStart({ payload: { businessId } }) {
 
 function* onCreatePersonStart({ payload: { businessId, data } }) {
     try {
-
-        yield axios.post(`${process.env.REACT_APP_TRIBAL_TEST_SERVICE}/business/${businessId}/persons`, data, {
-            headers: {
-                "x-api-key": process.env.REACT_APP_TRIBAL_TEST_API_KEY,
-                "Content-Type": "application/json",
-            }
-        });
+        yield call(callApi, "persons", "post", { businessId }, data);
 
         yield put(createPersonComplete(businessId));
     }
@@ -132,12 +99,7 @@ function* onListenCreatePersonComplete({ payload: { businessId } }) {
 function* onDeletePersonStart({ payload: { businessId, personId } }) {
 
     try {
-        yield axios.delete(`${process.env.REACT_APP_TRIBAL_TEST_SERVICE}/business/${businessId}/persons/${personId}`, {
-            headers: {
-                "x-api-key": process.env.REACT_APP_TRIBAL_TEST_API_KEY,
-                "Content-Type": "application/json",
-            }
-        });
+        yield call(callApi, "persons", "delete", { businessId, personId }, undefined);
 
         yield put(deletePersonComplete(businessId, personId));
     }
@@ -149,15 +111,10 @@ function* onDeletePersonStart({ payload: { businessId, personId } }) {
 function* onUpdatePersonStart({ payload: { businessId, personId, data } }) {
 
     try {
-        const response = yield axios.put(`${process.env.REACT_APP_TRIBAL_TEST_SERVICE}/business/${businessId}/persons/${personId}`, data, {
-            headers: {
-                "x-api-key": process.env.REACT_APP_TRIBAL_TEST_API_KEY,
-                "Content-Type": "application/json",
-            }
-        });
-       
-        yield put(updatePersonComplete(businessId, personId, response.data ));
-    
+        const response = yield call(callApi, "persons", "put", { businessId, personId }, data);
+
+        yield put(updatePersonComplete(businessId, personId, response.data));
+
     }
     catch (error) {
         yield put(updatePersonError(businessId, error));
@@ -165,7 +122,7 @@ function* onUpdatePersonStart({ payload: { businessId, personId, data } }) {
 
 }
 
-function* listenGetBusinessStart() {
+export function* listenGetBusinessStart() {
     yield takeLatest(
         BusinessTypes.GET_BUSINESS_START,
         onListenGetBusinessStart

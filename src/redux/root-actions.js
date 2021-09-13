@@ -1,5 +1,7 @@
 import {
     getBusinessStart,
+    getBusinessComplete,
+    getBusinessError,
     createBusinessStart,
     deleteBusinessStart,
     updateBusinessStart,
@@ -12,6 +14,9 @@ import {
 
 export {
     getBusinessStart,
+    getBusinessComplete,
+    getBusinessError,
+
     createBusinessStart,
     deleteBusinessStart,
     updateBusinessStart,
